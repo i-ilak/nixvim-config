@@ -441,58 +441,6 @@
       };
     }
 
-    # Dap
-    {
-      mode = ["n"];
-      key = "<leader>q";
-      action = ":lua require('dap').close()<CR>";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Close DAP session";
-      };
-    }
-    {
-      mode = ["n"];
-      key = "<leader>d";
-      action = ":lua require('dapui').toggle({ reset = true })<CR>";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Toggle DAP UI";
-      };
-    }
-    {
-      mode = ["n"];
-      key = "<F5>";
-      action = ":lua my_continue()<CR>";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Continue/Start DAP session";
-      };
-    }
-    {
-      mode = ["n"];
-      key = "<F9>";
-      action = ":lua require('dap').toggle_breakpoint()<CR>";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Toggle breakpoint";
-      };
-    }
-    {
-      mode = ["n"];
-      key = "<F10>";
-      action = ":lua require('dap').step_over()<CR>";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Step over in DAP session";
-      };
-    }
-
     # BlameToggle
     {
       mode = ["n"];
