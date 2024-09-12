@@ -35,6 +35,13 @@
     request = "launch";
     program.__raw = ''
       function()
+          -- local launch_json_path = vim.fn.getcwd() .. "/.vscode/launch.json"
+          --
+          --
+          -- if vim.fn.filereadable(launch_json_path) == 1 then
+          --     require("dap.ext.vscode").load_launchjs(nil, { cppdbg = { "c", "cpp" } })
+          -- end
+          -- require("dap").continue()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
       end'';
     cwd = ''''${workspaceFolder}'';
@@ -64,8 +71,7 @@ in {
   extraPackages = with pkgs;
     [
       coreutils
-      lldb
-      netcoredbg
+      lldb_18
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       pkgs.gdb
@@ -99,7 +105,7 @@ in {
           };
 
           lldb = {
-            command = lib.getExe' pkgs.lldb "lldb-dap";
+            command = lib.getExe' pkgs.lldb "lldb-vscode";
           };
 
           coreclr = {
@@ -232,12 +238,7 @@ in {
       key = "<F5>";
       action.__raw = ''
         function()
-            local launch_json_path = vim.fn.getcwd() .. "/.vscode/launch.json"
-
-            if vim.fn.filereadable(launch_json_path) == 1 then
-                require("dap.ext.vscode").load_launchjs(nil, { cppdbg = { "c", "cpp" } })
-            end
-            require("dap").continue()
+          require("dap").continue()
         end
       '';
       options = {
