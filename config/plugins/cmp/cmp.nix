@@ -1,4 +1,9 @@
 {
+  opts.completeopt = [
+    "menu"
+    "menuone"
+    "noselect"
+  ];
   plugins = {
     cmp-emoji.enable = true;
     cmp = {
@@ -13,13 +18,21 @@
           fetchingTimeout = 200;
           maxViewEntries = 30;
         };
-        snippet.expand = "luasnip";
+        snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
         formatting.fields = [
           "kind"
           "abbr"
           "menu"
         ];
         sources = [
+          {
+            name = "nvim_lsp";
+            priority = 11;
+          }
+          {
+            name = "nvim_lsp_signature_help";
+            priority = 11;
+          }
           {
             name = "buffer";
             priority = 10;
@@ -40,14 +53,6 @@
             keywordLength = 3;
           }
           {
-            name = "nvim_lsp";
-            priority = 8;
-          }
-          {
-            name = "nvim_lsp_signature_help";
-            priority = 8;
-          }
-          {
             name = "nvim_lua";
           }
         ];
@@ -64,6 +69,8 @@
           "<C-Space>" = "cmp.mapping.complete()";
           "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })";
         };
+
+        preselect = "cmp.PreselectMode.None";
       };
     };
     cmp-nvim-lsp.enable = true; # lsp
