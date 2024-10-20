@@ -111,6 +111,11 @@
               "clang_format"
             ]
           ];
+          cmake = [
+            [
+              "cmake_format"
+            ]
+          ];
           python = [
             "black"
             "isort"
