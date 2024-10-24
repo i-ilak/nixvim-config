@@ -45,7 +45,7 @@
           native_lsp = {
             enabled = true;
             inlay_hints = {
-              background = true;
+              background = false;
             };
             virtual_text = {
               errors = ["italic"];
