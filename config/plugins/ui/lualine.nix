@@ -4,21 +4,23 @@ _: {
     settings = {
       theme = "catppuccin";
       globalstatus = true;
-      componentSeparators = {
-        left = "";
-        right = "";
-      };
-      sectionSeparators = {
-        left = "";
-        right = "";
+      options = {
+        component_separators = {
+          left = "";
+          right = "";
+        };
+        section_separators = {
+          left = "";
+          right = "";
+        };
+        disabled_filetypes = {
+          statusline = ["startup" "alpha"];
+        };
       };
       extensions = [
         "fzf"
         "neo-tree"
       ];
-      disabledFiletypes = {
-        statusline = ["startup" "alpha"];
-      };
       sections = {
         lualine_a = [
           {
