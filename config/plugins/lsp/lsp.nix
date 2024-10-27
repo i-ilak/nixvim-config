@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   plugins = {
-    lsp-lines = {enable = false;};
     lsp-format = {enable = true;};
     helm = {enable = true;};
     lsp = {
