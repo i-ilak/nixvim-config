@@ -1,5 +1,7 @@
 {
   config = {
+    diagnostics.virtual_text = false;
+
     extraConfigLuaPre =
       # lua
       ''
