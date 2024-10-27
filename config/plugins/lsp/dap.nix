@@ -159,7 +159,7 @@ in {
         };
 
         dap-virtual-text = {
-          enable = true;
+          enable = false;
         };
       };
 
