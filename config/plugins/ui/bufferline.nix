@@ -27,7 +27,7 @@
   keymaps = [
     {
       mode = "n";
-      key = "TAB";
+      key = "<Tab>";
       action = "<cmd>BufferLineCycleNext<cr>";
       options = {
         desc = "Cycle to next buffer";
