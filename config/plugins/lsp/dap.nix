@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
   codelldb-config = {
     name = "Launch (CodeLLDB)";
     type = "codelldb";
@@ -63,11 +63,12 @@
     pathBash = "${lib.getExe pkgs.bash}";
     pathMkfifo = "mkfifo";
     pathPkill = "pkill";
-    args = {};
-    env = {};
+    args = { };
+    env = { };
     terminalKind = "integrated";
   };
-in {
+in
+{
   extraPackages = with pkgs;
     [
       coreutils
@@ -86,7 +87,7 @@ in {
 
       adapters = {
         executables = {
-          bashdb = lib.mkIf pkgs.stdenv.isLinux {command = lib.getExe pkgs.bashdb;};
+          bashdb = lib.mkIf pkgs.stdenv.isLinux { command = lib.getExe pkgs.bashdb; };
 
           cppdbg = {
             command = "gdb";
@@ -110,12 +111,12 @@ in {
 
           coreclr = {
             command = lib.getExe pkgs.netcoredbg;
-            args = ["--interpreter=vscode"];
+            args = [ "--interpreter=vscode" ];
           };
 
           netcoredbg = {
             command = lib.getExe pkgs.netcoredbg;
-            args = ["--interpreter=vscode"];
+            args = [ "--interpreter=vscode" ];
           };
         };
 
@@ -134,23 +135,23 @@ in {
       };
 
       configurations = {
-        c = [lldb-config] ++ lib.optionals pkgs.stdenv.isLinux [gdb-config];
+        c = [ lldb-config ] ++ lib.optionals pkgs.stdenv.isLinux [ gdb-config ];
 
         cpp =
-          [lldb-config]
+          [ lldb-config ]
           ++ lib.optionals pkgs.stdenv.isLinux [
             gdb-config
             codelldb-config
           ];
 
         rust =
-          [lldb-config]
+          [ lldb-config ]
           ++ lib.optionals pkgs.stdenv.isLinux [
             gdb-config
             codelldb-config
           ];
 
-        sh = lib.optionals pkgs.stdenv.isLinux [sh-config];
+        sh = lib.optionals pkgs.stdenv.isLinux [ sh-config ];
       };
 
       extensions = {

@@ -2,7 +2,7 @@
   description = "i-ilak's nixvim config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
@@ -16,51 +16,53 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    nixvim,
-    flake-parts,
-    pre-commit-hooks,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["aarch64-linux" "x86_64-linux" "aarch64-darwin" "x86_64-darwin"];
+  outputs =
+    { nixpkgs
+    , nixvim
+    , flake-parts
+    , pre-commit-hooks
+    , ...
+    } @ inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
 
-      perSystem = {
-        system,
-        pkgs,
-        self',
-        lib,
-        ...
-      }: let
-        nixvim' = nixvim.legacyPackages.${system};
-        nvim = nixvim'.makeNixvimWithModule {
-          inherit pkgs;
-          module = ./config;
-        };
-      in {
-        checks = {
-          default = pkgs.nixvimLib.check.mkTestDerivationFromNvim {
-            inherit nvim;
-            name = "A nixvim configuration";
+      perSystem =
+        { system
+        , pkgs
+        , self'
+        , lib
+        , ...
+        }:
+        let
+          nixvim' = nixvim.legacyPackages.${system};
+          nvim = nixvim'.makeNixvimWithModule {
+            inherit pkgs;
+            module = ./config;
           };
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              statix.enable = true;
-              alejandra.enable = true;
+        in
+        {
+          checks = {
+            default = pkgs.nixvimLib.check.mkTestDerivationFromNvim {
+              inherit nvim;
+              name = "A nixvim configuration";
+            };
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                statix.enable = true;
+                alejandra.enable = true;
+              };
             };
           };
+
+          formatter = pkgs.alejandra;
+
+          packages.default = nvim;
+
+          devShells = {
+            default = with pkgs;
+              mkShell { inherit (self'.checks.pre-commit-check) shellHook; };
+          };
         };
-
-        formatter = pkgs.alejandra;
-
-        packages.default = nvim;
-
-        devShells = {
-          default = with pkgs;
-            mkShell {inherit (self'.checks.pre-commit-check) shellHook;};
-        };
-      };
     };
 }

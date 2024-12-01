@@ -58,8 +58,8 @@
         ];
 
         window = {
-          completion = {border = "solid";};
-          documentation = {border = "solid";};
+          completion = { border = "solid"; };
+          documentation = { border = "solid"; };
         };
 
         mapping = {

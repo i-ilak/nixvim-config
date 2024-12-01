@@ -14,7 +14,7 @@ _: {
           right = "";
         };
         disabled_filetypes = {
-          statusline = ["startup" "alpha"];
+          statusline = [ "startup" "alpha" ];
         };
       };
       extensions = [
@@ -45,7 +45,7 @@ _: {
         lualine_c = [
           {
             __unkeyed = "diagnostics";
-            sources = ["nvim_lsp"];
+            sources = [ "nvim_lsp" ];
             symbols = {
               error = " ";
               warn = " ";
