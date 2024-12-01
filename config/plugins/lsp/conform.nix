@@ -121,7 +121,7 @@
             "isort"
           ];
           lua = ["stylua"];
-          nix = ["alejandra"];
+          nix = ["nixfmt"];
           markdown = [
             [
               "prettierd"
@@ -154,6 +154,9 @@
           };
           alejandra = {
             command = "${lib.getExe pkgs.alejandra}";
+          };
+          nixfmt = {
+            command = "${lib.getExe pkgs.nixpkgs-fmt}";
           };
           jq = {
             command = "${lib.getExe pkgs.jq}";

@@ -1,19 +1,23 @@
-{pkgs, ...}: {
+{ pkgs
+, ...
+}: {
   plugins = {
-    lsp-format = {enable = true;};
-    helm = {enable = true;};
+    lsp-format = {
+      enable = true;
+    };
+    helm = { enable = true; };
     lsp = {
       enable = true;
       inlayHints = false;
       servers = {
-        html = {enable = true;};
-        lua_ls = {enable = true;};
-        nil_ls = {enable = true;};
-        marksman = {enable = true;};
-        pyright = {enable = true;};
-        clangd = {enable = true;};
-        cmake = {enable = true;};
-        jsonls = {enable = true;};
+        html = { enable = true; };
+        lua_ls = { enable = true; };
+        nil_ls = { enable = true; };
+        marksman = { enable = true; };
+        pyright = { enable = true; };
+        clangd = { enable = true; };
+        cmake = { enable = true; };
+        jsonls = { enable = true; };
         yamlls = {
           enable = true;
           extraOptions = {
