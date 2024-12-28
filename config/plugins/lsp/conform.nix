@@ -110,6 +110,11 @@
               "clang_format"
             ]
           ];
+          rust = [
+            [
+              "rustfmt"
+            ]
+          ];
           cmake = [
             [
               "cmake_format"

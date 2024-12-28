@@ -18,6 +18,12 @@
         clangd = { enable = true; };
         cmake = { enable = true; };
         jsonls = { enable = true; };
+        rust_analyzer =
+          {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+          };
         yamlls = {
           enable = true;
           extraOptions = {
