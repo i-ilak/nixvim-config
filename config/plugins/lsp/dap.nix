@@ -79,20 +79,6 @@ in
       };
 
       configurations = {
-        #   c = [ lldb-config ] ++ lib.optionals pkgs.stdenv.isLinux [ gdb-config ];
-        #
-        #   cpp =
-        #     [ lldb-config ]
-        #     ++ lib.optionals pkgs.stdenv.isLinux [
-        #       gdb-config
-        #       codelldb-config
-        #     ];
-        # rust =
-        #   [ lldb-config ]
-        #   ++ lib.optionals pkgs.stdenv.isLinux [
-        #     gdb-config
-        #     codelldb-config
-        #   ];
         sh = lib.optionals pkgs.stdenv.isLinux [ sh-config ];
       };
 
