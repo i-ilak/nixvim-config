@@ -116,9 +116,9 @@ in
       };
     };
 
-    dap-lldb = {
-      enable = true;
-    };
+    # dap-lldb = {
+    #   enable = true;
+    # };
 
     which-key.settings.spec = lib.optionals
       config.plugins.dap.extensions.dap-ui.enable
