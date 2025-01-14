@@ -28,7 +28,7 @@ in
   extraPackages = with pkgs;
     [
       coreutils
-      lldb_18
+      lldb_19
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       pkgs.gdb
@@ -60,12 +60,12 @@ in
           };
 
           lldb = {
-            command = lib.getExe' pkgs.lldb "lldb-vscode";
+            command = lib.getExe' pkgs.lldb_19 "lldb-vscode";
           };
         };
 
         servers = {
-          codelldb = {
+          codelldb = lib.mkIf pkgs.stdenv.isLinux {
             port = 13000;
             executable = {
               command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
