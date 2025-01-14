@@ -15,7 +15,16 @@
         nil_ls = { enable = true; };
         marksman = { enable = true; };
         pyright = { enable = true; };
-        clangd = { enable = true; };
+        clangd = {
+          enable = true;
+          cmd = [
+            "clangd"
+            "--background-index"
+            "-j"
+            "20"
+            "--clang-tidy"
+          ];
+        };
         cmake = { enable = true; };
         jsonls = { enable = true; };
         rust_analyzer =
