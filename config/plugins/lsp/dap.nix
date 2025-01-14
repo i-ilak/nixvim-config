@@ -4,50 +4,6 @@
 , ...
 }:
 let
-  codelldb-config = {
-    name = "Launch (CodeLLDB)";
-    type = "codelldb";
-    request = "launch";
-    program.__raw = ''
-      function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
-      end
-    '';
-    cwd = ''''${workspaceFolder}'';
-    stopOnEntry = false;
-  };
-
-  gdb-config = {
-    name = "Launch (GDB)";
-    type = "gdb";
-    request = "launch";
-    program.__raw = ''
-      function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
-      end'';
-    cwd = ''''${workspaceFolder}'';
-    stopOnEntry = false;
-  };
-
-  lldb-config = {
-    name = "Launch (LLDB)";
-    type = "lldb";
-    request = "launch";
-    program.__raw = ''
-      function()
-          -- local launch_json_path = vim.fn.getcwd() .. "/.vscode/launch.json"
-          --
-          --
-          -- if vim.fn.filereadable(launch_json_path) == 1 then
-          --     require("dap.ext.vscode").load_launchjs(nil, { cppdbg = { "c", "cpp" } })
-          -- end
-          -- require("dap").continue()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
-      end'';
-    cwd = ''''${workspaceFolder}'';
-    stopOnEntry = false;
-  };
-
   sh-config = lib.mkIf pkgs.stdenv.isLinux {
     type = "bashdb";
     request = "launch";
@@ -72,14 +28,12 @@ in
   extraPackages = with pkgs;
     [
       coreutils
-      lldb_18
+      lldb_19
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       pkgs.gdb
       pkgs.bashdb
     ];
-
-  #   extraPlugins = with pkgs.vimPlugins; [ nvim-gdb ];
 
   plugins = {
     dap = {
@@ -106,17 +60,7 @@ in
           };
 
           lldb = {
-            command = lib.getExe' pkgs.lldb "lldb-vscode";
-          };
-
-          coreclr = {
-            command = lib.getExe pkgs.netcoredbg;
-            args = [ "--interpreter=vscode" ];
-          };
-
-          netcoredbg = {
-            command = lib.getExe pkgs.netcoredbg;
-            args = [ "--interpreter=vscode" ];
+            command = lib.getExe' pkgs.lldb_19 "lldb-vscode";
           };
         };
 
@@ -135,22 +79,6 @@ in
       };
 
       configurations = {
-        c = [ lldb-config ] ++ lib.optionals pkgs.stdenv.isLinux [ gdb-config ];
-
-        cpp =
-          [ lldb-config ]
-          ++ lib.optionals pkgs.stdenv.isLinux [
-            gdb-config
-            codelldb-config
-          ];
-
-        rust =
-          [ lldb-config ]
-          ++ lib.optionals pkgs.stdenv.isLinux [
-            gdb-config
-            codelldb-config
-          ];
-
         sh = lib.optionals pkgs.stdenv.isLinux [ sh-config ];
       };
 
@@ -188,127 +116,135 @@ in
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.dap.extensions.dap-ui.enable [
-      {
-        __unkeyed = "<leader>d";
-        mode = "n";
-        desc = "Debug";
-        # icon = " ";
-      }
-    ];
+    dap-lldb = {
+      enable = true;
+    };
+
+    which-key.settings.spec = lib.optionals
+      config.plugins.dap.extensions.dap-ui.enable
+      [
+        {
+          __unkeyed = "<leader>d";
+          mode = "n";
+          desc = "Debug";
+          # icon = " ";
+        }
+      ];
   };
 
-  keymaps = lib.optionals config.plugins.dap.extensions.dap-ui.enable [
-    {
-      mode = "v";
-      key = "<leader>e";
-      action.__raw = ''
-        function() require("dapui").eval() end
-      '';
-      options = {
-        desc = "Evaluate Input";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dh";
-      action.__raw = ''
-        function() require("dap.ui.widgets").hover() end
-      '';
-      options = {
-        desc = "Debugger Hover";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>d";
-      action.__raw = ''
-        function()
-          require("dapui").toggle( { reset = true; } )
-        end
-      '';
-      options = {
-        desc = "Toggle Debugger UI";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<F5>";
-      action.__raw = ''
-        function()
-          require("dap").continue()
-        end
-      '';
-      options = {
-        desc = "Continue Debugging (Start)";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<F9>";
-      action.__raw = ''
-        function()
-          require("dap").toggle_breakpoint()
-        end
-      '';
-      options = {
-        desc = "Breakpoint toggle";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<F10>";
-      action.__raw = ''
-        function()
-          require("dap").step_over()
-        end
-      '';
-      options = {
-        desc = "Step Over";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<F11>";
-      action.__raw = ''
-        function()
-          require("dap").step_into()
-        end
-      '';
-      options = {
-        desc = "Step Into";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<F12>";
-      action.__raw = ''
-        function()
-          require("dap").step_out()
-        end
-      '';
-      options = {
-        desc = "Step Out";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>q";
-      action.__raw = ''
-        function() require("dap").terminate() end
-      '';
-      options = {
-        desc = "Terminate Debugging";
-        silent = true;
-      };
-    }
-  ];
+  keymaps = lib.optionals
+    config.plugins.dap.extensions.dap-ui.enable
+    [
+      {
+        mode = "v";
+        key = "<leader>e";
+        action.__raw = ''
+          function() require("dapui").eval() end
+        '';
+        options = {
+          desc = "Evaluate Input";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>dh";
+        action.__raw = ''
+          function() require("dap.ui.widgets").hover() end
+        '';
+        options = {
+          desc = "Debugger Hover";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>d";
+        action.__raw = ''
+          function()
+            require("dapui").toggle( { reset = true; } )
+          end
+        '';
+        options = {
+          desc = "Toggle Debugger UI";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<F5>";
+        action.__raw = ''
+          function()
+            require("dap").continue()
+          end
+        '';
+        options = {
+          desc = "Continue Debugging (Start)";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<F9>";
+        action.__raw = ''
+          function()
+            require("dap").toggle_breakpoint()
+          end
+        '';
+        options = {
+          desc = "Breakpoint toggle";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<F10>";
+        action.__raw = ''
+          function()
+            require("dap").step_over()
+          end
+        '';
+        options = {
+          desc = "Step Over";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<F11>";
+        action.__raw = ''
+          function()
+            require("dap").step_into()
+          end
+        '';
+        options = {
+          desc = "Step Into";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<F12>";
+        action.__raw = ''
+          function()
+            require("dap").step_out()
+          end
+        '';
+        options = {
+          desc = "Step Out";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>q";
+        action.__raw = ''
+          function() require("dap").terminate() end
+        '';
+        options = {
+          desc = "Terminate Debugging";
+          silent = true;
+        };
+      }
+    ];
 }
