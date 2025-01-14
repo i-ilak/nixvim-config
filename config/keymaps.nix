@@ -440,19 +440,6 @@
         desc = "Open diagnostic in floating window";
       };
     }
-
-    # BlameToggle
-    {
-      mode = [ "n" ];
-      key = "bt";
-      action = ":BlameToggle<CR>";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Toggle Git blame";
-      };
-    }
-
     # Trailblazer
     {
       mode = [ "n" ];
