@@ -60,7 +60,7 @@ in
           };
 
           lldb = {
-            command = lib.getExe' pkgs.lldb_19 "lldb-vscode";
+            command = lib.getExe' pkgs.lldb "lldb-dap";
           };
         };
 
