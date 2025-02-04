@@ -32,6 +32,7 @@ _: {
     ./plugins/editor/leap.nix
     ./plugins/editor/cmake-tools.nix
     ./plugins/editor/gitblame.nix
+    ./plugins/editor/trailblazer.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
