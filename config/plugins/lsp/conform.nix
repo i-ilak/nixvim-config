@@ -20,48 +20,32 @@
         notify_on_error = true;
         formatters_by_ft = {
           html = [
-            [
-              "prettierd"
-              "prettier"
-            ]
+            "prettierd"
+            "prettier"
           ];
           css = [
-            [
-              "prettierd"
-              "prettier"
-            ]
+            "prettierd"
+            "prettier"
           ];
           javascript = [
-            [
-              "prettierd"
-              "prettier"
-            ]
+            "prettierd"
+            "prettier"
           ];
           typescript = [
-            [
-              "prettierd"
-              "prettier"
-            ]
+            "prettierd"
+            "prettier"
           ];
           c = [
-            [
-              "clang_format"
-            ]
+            "clang_format"
           ];
           cpp = [
-            [
-              "clang_format"
-            ]
+            "clang_format"
           ];
           rust = [
-            [
-              "rustfmt"
-            ]
+            "rustfmt"
           ];
           cmake = [
-            [
-              "cmake_format"
-            ]
+            "cmake_format"
           ];
           python = [
             "black"
@@ -70,16 +54,12 @@
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
           markdown = [
-            [
-              "prettierd"
-              "prettier"
-            ]
+            "prettierd"
+            "prettier"
           ];
           yaml = [
-            [
-              "prettierd"
-              "prettier"
-            ]
+            "prettierd"
+            "prettier"
           ];
           terraform = [ "terraform_fmt" ];
           bicep = [ "bicep" ];
