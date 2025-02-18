@@ -82,16 +82,6 @@ in
         sh = lib.optionals pkgs.stdenv.isLinux [ sh-config ];
       };
 
-      extensions = {
-        dap-ui = {
-          enable = true;
-        };
-
-        dap-virtual-text = {
-          enable = false;
-        };
-      };
-
       signs = {
         dapBreakpoint = {
           text = "";
@@ -121,7 +111,7 @@ in
     };
 
     which-key.settings.spec = lib.optionals
-      config.plugins.dap.extensions.dap-ui.enable
+      config.plugins.dap-ui.enable
       [
         {
           __unkeyed = "<leader>d";
@@ -130,10 +120,19 @@ in
           # icon = " ";
         }
       ];
+
+    dap-ui = {
+      enable = true;
+    };
+
+    dap-virtual-text = {
+      enable = false;
+    };
+
   };
 
   keymaps = lib.optionals
-    config.plugins.dap.extensions.dap-ui.enable
+    config.plugins.dap-ui.enable
     [
       {
         mode = "v";
@@ -248,3 +247,4 @@ in
       }
     ];
 }
+
