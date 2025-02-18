@@ -12,8 +12,9 @@
       '';
 
     clipboard = {
-      register = "unnamedplus";
+      register = [ "unnamed" "unnamedplus" ];
       providers.wl-copy.enable = true;
+      providers.xclip.enable = true;
     };
 
     opts = {
@@ -22,9 +23,6 @@
 
       # Show relative line numbers
       relativenumber = true;
-
-      # Use the system clipboard
-      clipboard = "unnamedplus";
 
       # Number of spaces that represent a <TAB>
       tabstop = 4;
