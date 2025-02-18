@@ -33,6 +33,7 @@ _: {
     ./plugins/editor/cmake-tools.nix
     ./plugins/editor/gitblame.nix
     ./plugins/editor/surround.nix
+    ./plugins/editor/overseer.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
