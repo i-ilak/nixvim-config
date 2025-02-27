@@ -19,6 +19,7 @@
           enable = true;
           cmd = [
             "clangd"
+            "--offset-encoding=utf-16"
             "--background-index"
             "-j"
             "20"
