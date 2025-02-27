@@ -45,10 +45,6 @@
             keywordLength = 3;
           }
           {
-            name = "copilot";
-            priority = 9;
-          }
-          {
             name = "luasnip";
             keywordLength = 3;
           }
