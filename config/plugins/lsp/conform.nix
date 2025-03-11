@@ -49,7 +49,6 @@
           ];
           python = [
             "black"
-            "isort"
           ];
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
