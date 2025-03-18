@@ -17,6 +17,7 @@
         pyright = { enable = true; };
         clangd = {
           enable = true;
+          package = pkgs.llvmPackages_18.clang-tools;
           cmd = [
             "clangd"
             "--offset-encoding=utf-16"
