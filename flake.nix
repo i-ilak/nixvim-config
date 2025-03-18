@@ -2,12 +2,13 @@
   description = "i-ilak's nixvim config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/9c17f8971ea70e8c71f40edae8ab58d67418b6c9";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
     nixvim = {
       url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
