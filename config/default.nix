@@ -5,6 +5,7 @@ _: {
     ./keymaps.nix
     ./auto_cmds.nix
     ./file_types.nix
+    ./extra.nix
 
     # Themes
     ./plugins/themes/default.nix
@@ -57,5 +58,7 @@ _: {
     ./plugins/utils/markdown-preview.nix
     ./plugins/utils/obsidian.nix
     ./plugins/utils/toggleterm.nix
+
+
   ];
 }
