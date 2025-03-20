@@ -14,12 +14,17 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { nixpkgs
     , nixvim
     , flake-parts
+    , treefmt-nix
     , pre-commit-hooks
     , ...
     } @ inputs:
@@ -39,6 +44,7 @@
             inherit pkgs;
             module = ./config;
           };
+          treefmt = treefmt-nix.lib.evalModule pkgs ./format.nix;
         in
         {
           checks = {
@@ -55,7 +61,7 @@
             };
           };
 
-          formatter = pkgs.alejandra;
+          formatter = treefmt.config.build.wrapper;
 
           packages.default = nvim;
 
