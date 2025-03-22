@@ -52,11 +52,19 @@
       # Enable mouse support
       mouse = "a";
 
-      # Set folding method to manual
-      foldmethod = "manual";
-
-      # Disable folding by default
-      foldenable = false;
+      # Fold config
+      foldcolumn = "0";
+      fillchars =
+        {
+          eob = " ";
+          fold = " ";
+          foldopen = "";
+          foldsep = " ";
+          foldclose = "";
+        };
+      foldlevel = 99;
+      foldlevelstart = 99;
+      foldenable = true;
 
       # Wrap long lines at a character in 'breakat'
       linebreak = true;

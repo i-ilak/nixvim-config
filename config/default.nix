@@ -33,6 +33,7 @@ _: {
     ./plugins/editor/gitblame.nix
     ./plugins/editor/surround.nix
     ./plugins/editor/overseer.nix
+    ./plugins/editor/fold.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
