@@ -65,7 +65,7 @@ in
         };
 
         servers = {
-          codelldb = lib.mkIf pkgs.stdenv.isLinux {
+          codelldb = {
             port = 13000;
             executable = {
               command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
@@ -108,6 +108,15 @@ in
 
     dap-lldb = {
       enable = true;
+      settings.codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+    };
+
+    dap-ui = {
+      enable = true;
+    };
+
+    dap-virtual-text = {
+      enable = false;
     };
 
     which-key.settings.spec = lib.optionals
@@ -120,15 +129,6 @@ in
           # icon = " ";
         }
       ];
-
-    dap-ui = {
-      enable = true;
-    };
-
-    dap-virtual-text = {
-      enable = false;
-    };
-
   };
 
   keymaps = lib.optionals
