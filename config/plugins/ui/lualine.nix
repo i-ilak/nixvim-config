@@ -73,6 +73,7 @@ _: {
           }
         ];
         lualine_y = [
+          "overseer"
           "progress"
         ];
         lualine_z = [

@@ -58,9 +58,9 @@
         {
           eob = " ";
           fold = " ";
-          foldopen = "";
+          foldopen = "▾";
           foldsep = " ";
-          foldclose = "";
+          foldclose = "▸";
         };
       foldlevel = 99;
       foldlevelstart = 99;
