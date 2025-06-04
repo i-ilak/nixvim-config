@@ -7,7 +7,36 @@
     };
     folding = true;
     nixvimInjections = true;
-    grammarPackages = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+      bash
+      c
+      cmake
+      cpp
+      css
+      dockerfile
+      html
+      ini
+      javascript
+      json
+      latex
+      lua
+      llvm
+      matlab
+      make
+      markdown
+      nix
+      python
+      regex
+      rust
+      scss
+      sql
+      toml
+      typescript
+      vim
+      vimdoc
+      xml
+      yaml
+    ];
   };
 
   plugins.treesitter-textobjects = {
