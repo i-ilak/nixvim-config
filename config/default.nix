@@ -10,6 +10,8 @@ _: {
     # Themes
     ./plugins/themes/default.nix
 
+    ./plugins/lz_n.nix
+
     # Completion
     ./plugins/cmp/cmp.nix
     ./plugins/cmp/lspkind.nix
@@ -59,7 +61,5 @@ _: {
     ./plugins/utils/markdown-preview.nix
     ./plugins/utils/obsidian.nix
     ./plugins/utils/toggleterm.nix
-
-
   ];
 }

@@ -12,7 +12,10 @@
       servers = {
         html = { enable = true; };
         lua_ls = { enable = true; };
-        nil_ls = { enable = true; };
+        nil_ls = {
+          enable = true;
+          settings.nix.flake.autoArchive = true;
+        };
         marksman = { enable = true; };
         pyright = { enable = true; };
         clangd = {

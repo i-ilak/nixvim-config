@@ -1,6 +1,10 @@
 {
   plugins.telescope = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings.cmd = "Telescope";
+    };
     extensions = {
       file-browser = {
         enable = true;
