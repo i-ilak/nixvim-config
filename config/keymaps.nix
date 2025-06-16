@@ -444,7 +444,14 @@
     {
       mode = [ "n" ];
       key = "m";
-      action = ":lua require('plugins.trailblazer').new_mark()<CR>";
+      action.__raw = ''
+        function()
+            local tb = require("trailblazer")
+            tb.new_trail_mark()
+            tb.open_trail_mark_list()
+            vim.cmd('wincmd p')
+        end
+      '';
       options = {
         silent = true;
         noremap = true;
@@ -453,3 +460,5 @@
     }
   ];
 }
+
+
