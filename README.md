@@ -1,6 +1,7 @@
 # Neovim configuration using [`nixvim`](https://github.com/nix-community/nixvim)
 
 [![Flake Check](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-check.yml/badge.svg)](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-check.yml)
+[![Flake Build](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-build.yaml/badge.svg)](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-build.yaml)
 
 Personal neovim setup
 
