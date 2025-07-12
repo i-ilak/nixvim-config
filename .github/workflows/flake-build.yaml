@@ -7,8 +7,8 @@ on:
   pull_request:
   workflow_dispatch:
 jobs:
-  build-dev-shells:
-    name: Build on ${{ matrix.system }}
+  flake-build:
+    name: Flake Build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
