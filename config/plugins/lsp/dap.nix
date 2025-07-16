@@ -146,7 +146,7 @@ in
           {
             elements = [
               {
-                id = "console";
+                id = "repl";
                 size = 1;
               }
             ];
