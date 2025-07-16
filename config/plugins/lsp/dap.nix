@@ -113,6 +113,48 @@ in
 
     dap-ui = {
       enable = true;
+      settings = {
+        layouts = [
+          {
+            elements = [
+              {
+                id = "breakpoints";
+                size = 0.25;
+              }
+              {
+                id = "stacks";
+                size = 0.25;
+              }
+              {
+                id = "watches";
+                size = 0.25;
+              }
+            ];
+            position = "left";
+            size = 45;
+          }
+          {
+            elements = [
+              {
+                id = "scopes";
+                size = 1;
+              }
+            ];
+            position = "bottom";
+            size = 20;
+          }
+          {
+            elements = [
+              {
+                id = "console";
+                size = 1;
+              }
+            ];
+            position = "right";
+            size = 45;
+          }
+        ];
+      };
     };
 
     dap-virtual-text = {
