@@ -14,7 +14,10 @@ _: {
           right = "";
         };
         disabled_filetypes = {
-          statusline = [ "startup" "alpha" ];
+          statusline = [
+            "startup"
+            "alpha"
+          ];
         };
       };
       extensions = [

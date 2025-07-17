@@ -1,7 +1,9 @@
-{ lib
-, pkgs
-, ...
-}: {
+{
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = {
     plugins.conform-nvim = {
       enable = true;
@@ -82,7 +84,7 @@
             command = "${lib.getExe pkgs.alejandra}";
           };
           nixfmt = {
-            command = "${lib.getExe pkgs.nixpkgs-fmt}";
+            command = "${lib.getExe pkgs.nixfmt-rfc-style}";
           };
           jq = {
             command = "${lib.getExe pkgs.jq}";

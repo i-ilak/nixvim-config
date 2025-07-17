@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   sh-config = lib.mkIf pkgs.stdenv.isLinux {
@@ -25,7 +26,8 @@ let
   };
 in
 {
-  extraPackages = with pkgs;
+  extraPackages =
+    with pkgs;
     [
       coreutils
       lldb_19
@@ -119,132 +121,127 @@ in
       enable = false;
     };
 
-    which-key.settings.spec = lib.optionals
-      config.plugins.dap-ui.enable
-      [
-        {
-          __unkeyed = "<leader>d";
-          mode = "n";
-          desc = "Debug";
-          # icon = " ";
-        }
-      ];
-  };
-
-  keymaps = lib.optionals
-    config.plugins.dap-ui.enable
-    [
+    which-key.settings.spec = lib.optionals config.plugins.dap-ui.enable [
       {
-        mode = "v";
-        key = "<leader>e";
-        action.__raw = ''
-          function() require("dapui").eval() end
-        '';
-        options = {
-          desc = "Evaluate Input";
-          silent = true;
-        };
-      }
-      {
+        __unkeyed = "<leader>d";
         mode = "n";
-        key = "<leader>dh";
-        action.__raw = ''
-          function() require("dap.ui.widgets").hover() end
-        '';
-        options = {
-          desc = "Debugger Hover";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>d";
-        action.__raw = ''
-          function()
-            require("dapui").toggle( { reset = true; } )
-          end
-        '';
-        options = {
-          desc = "Toggle Debugger UI";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<F5>";
-        action.__raw = ''
-          function()
-            require("dap").continue()
-          end
-        '';
-        options = {
-          desc = "Continue Debugging (Start)";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<F9>";
-        action.__raw = ''
-          function()
-            require("dap").toggle_breakpoint()
-          end
-        '';
-        options = {
-          desc = "Breakpoint toggle";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<F10>";
-        action.__raw = ''
-          function()
-            require("dap").step_over()
-          end
-        '';
-        options = {
-          desc = "Step Over";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<F11>";
-        action.__raw = ''
-          function()
-            require("dap").step_into()
-          end
-        '';
-        options = {
-          desc = "Step Into";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<F12>";
-        action.__raw = ''
-          function()
-            require("dap").step_out()
-          end
-        '';
-        options = {
-          desc = "Step Out";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>q";
-        action.__raw = ''
-          function() require("dap").terminate() end
-        '';
-        options = {
-          desc = "Terminate Debugging";
-          silent = true;
-        };
+        desc = "Debug";
+        # icon = " ";
       }
     ];
-}
+  };
 
+  keymaps = lib.optionals config.plugins.dap-ui.enable [
+    {
+      mode = "v";
+      key = "<leader>e";
+      action.__raw = ''
+        function() require("dapui").eval() end
+      '';
+      options = {
+        desc = "Evaluate Input";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dh";
+      action.__raw = ''
+        function() require("dap.ui.widgets").hover() end
+      '';
+      options = {
+        desc = "Debugger Hover";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>d";
+      action.__raw = ''
+        function()
+          require("dapui").toggle( { reset = true; } )
+        end
+      '';
+      options = {
+        desc = "Toggle Debugger UI";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<F5>";
+      action.__raw = ''
+        function()
+          require("dap").continue()
+        end
+      '';
+      options = {
+        desc = "Continue Debugging (Start)";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<F9>";
+      action.__raw = ''
+        function()
+          require("dap").toggle_breakpoint()
+        end
+      '';
+      options = {
+        desc = "Breakpoint toggle";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<F10>";
+      action.__raw = ''
+        function()
+          require("dap").step_over()
+        end
+      '';
+      options = {
+        desc = "Step Over";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<F11>";
+      action.__raw = ''
+        function()
+          require("dap").step_into()
+        end
+      '';
+      options = {
+        desc = "Step Into";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<F12>";
+      action.__raw = ''
+        function()
+          require("dap").step_out()
+        end
+      '';
+      options = {
+        desc = "Step Out";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>q";
+      action.__raw = ''
+        function() require("dap").terminate() end
+      '';
+      options = {
+        desc = "Terminate Debugging";
+        silent = true;
+      };
+    }
+  ];
+}

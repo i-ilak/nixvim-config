@@ -1,4 +1,3 @@
-_:
-{
+_: {
   plugins.trailblazer.enable = true;
 }

@@ -39,82 +39,113 @@
       };
     }
     {
-      mode = [ "i" "x" "n" "s" ];
+      mode = [
+        "i"
+        "x"
+        "n"
+        "s"
+      ];
       key = "<C-s>";
       action = "<cmd>w<cr><esc>";
-      options = { desc = "Save File"; };
+      options = {
+        desc = "Save File";
+      };
     }
     {
       mode = "n";
       key = "<leader>`";
       action = "vim.diagnostic.open_float";
-      options = { desc = "Line Diagnostics"; };
+      options = {
+        desc = "Line Diagnostics";
+      };
     }
     {
       mode = "n";
       key = "]d";
       action = "diagnostic_goto(true)";
-      options = { desc = "Next Diagnostic"; };
+      options = {
+        desc = "Next Diagnostic";
+      };
     }
     {
       mode = "n";
       key = "[d";
       action = "diagnostic_goto(false)";
-      options = { desc = "Prev Diagnostic"; };
+      options = {
+        desc = "Prev Diagnostic";
+      };
     }
     {
       mode = "n";
       key = "]e";
       action = "diagnostic_goto(true 'ERROR')";
-      options = { desc = "Next Error"; };
+      options = {
+        desc = "Next Error";
+      };
     }
     {
       mode = "n";
       key = "[e";
       action = "diagnostic_goto(false 'ERROR')";
-      options = { desc = "Prev Error"; };
+      options = {
+        desc = "Prev Error";
+      };
     }
     {
       mode = "n";
       key = "]w";
       action = "diagnostic_goto(true 'WARN')";
-      options = { desc = "Next Warning"; };
+      options = {
+        desc = "Next Warning";
+      };
     }
     {
       mode = "n";
       key = "[w";
       action = "diagnostic_goto(false 'WARN')";
-      options = { desc = "Prev Warning"; };
+      options = {
+        desc = "Prev Warning";
+      };
     }
     {
       mode = "t";
       key = "<C-h>";
       action = "<cmd>wincmd h<cr>";
-      options = { desc = "Go to Left Window"; };
+      options = {
+        desc = "Go to Left Window";
+      };
     }
     {
       mode = "t";
       key = "<C-j>";
       action = "<cmd>wincmd j<cr>";
-      options = { desc = "Go to Lower Window"; };
+      options = {
+        desc = "Go to Lower Window";
+      };
     }
     {
       mode = "t";
       key = "<C-k>";
       action = "<cmd>wincmd k<cr>";
-      options = { desc = "Go to Upper Window"; };
+      options = {
+        desc = "Go to Upper Window";
+      };
     }
     {
       mode = "t";
       key = "<C-l>";
       action = "<cmd>wincmd l<cr>";
-      options = { desc = "Go to Right Window"; };
+      options = {
+        desc = "Go to Right Window";
+      };
     }
     {
       mode = "t";
       key = "<C-/>";
       action = "<cmd>close<cr>";
-      options = { desc = "Hide Terminal"; };
+      options = {
+        desc = "Hide Terminal";
+      };
     }
     {
       mode = "n";
@@ -174,13 +205,17 @@
       mode = "n";
       key = "ä";
       action = "za";
-      options = { desc = "Fold/Unfold at current line"; };
+      options = {
+        desc = "Fold/Unfold at current line";
+      };
     }
     {
       mode = "n";
       key = "Ä";
       action = "zR";
-      options = { desc = "Fold/Unfold file"; };
+      options = {
+        desc = "Fold/Unfold file";
+      };
     }
 
     # General movements
@@ -460,5 +495,3 @@
     }
   ];
 }
-
-
