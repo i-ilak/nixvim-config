@@ -1,17 +1,17 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 {
-  extraPlugins = with pkgs.vimPlugins;
-    [
-      jinja-vim
-      trailblazer-nvim
-    ];
+  extraPlugins = with pkgs.vimPlugins; [
+    jinja-vim
+    trailblazer-nvim
+  ];
   extraConfigLua = ''
     vim.api.nvim_create_autocmd("FileType", {
       callback = function()
         local buf = vim.api.nvim_get_current_buf()
-    
+
         -- Check if the autocmd has already been loaded for this buffer
         if not vim.b[buf].jinja_syntax_autocmd_loaded then
           -- Check if the jinja treesitter parser is available

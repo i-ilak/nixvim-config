@@ -21,21 +21,28 @@
   };
 
   outputs =
-    { nixvim
-    , flake-parts
-    , treefmt-nix
-    , pre-commit-hooks
-    , ...
-    } @ inputs:
+    {
+      nixvim,
+      flake-parts,
+      treefmt-nix,
+      pre-commit-hooks,
+      ...
+    }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
 
       perSystem =
-        { system
-        , pkgs
-        , self'
-        , lib
-        , ...
+        {
+          system,
+          pkgs,
+          self',
+          lib,
+          ...
         }:
         let
           nixvim' = nixvim.legacyPackages.${system};
@@ -51,7 +58,7 @@
               src = ./.;
               hooks = {
                 statix.enable = true;
-                nixpkgs-fmt.enable = true;
+                nixfmt-rfc-style.enable = true;
                 deadnix.enable = true;
               };
             };
@@ -62,8 +69,7 @@
           packages.default = nvim;
 
           devShells = {
-            default = with pkgs;
-              mkShell { inherit (self'.checks.pre-commit-check) shellHook; };
+            default = with pkgs; mkShell { inherit (self'.checks.pre-commit-check) shellHook; };
           };
         };
     };

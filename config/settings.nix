@@ -12,7 +12,10 @@
       '';
 
     clipboard = {
-      register = [ "unnamed" "unnamedplus" ];
+      register = [
+        "unnamed"
+        "unnamedplus"
+      ];
       providers.wl-copy.enable = true;
       providers.xclip.enable = true;
     };
@@ -54,16 +57,15 @@
 
       # Fold config
       foldcolumn = "0";
-      fillchars =
-        {
-          eob = " ";
-          fold = " ";
-          foldopen = "▾";
-          foldsep = " ";
-          foldclose = "▸";
-          vert = "║";
-          horiz = "═";
-        };
+      fillchars = {
+        eob = " ";
+        fold = " ";
+        foldopen = "▾";
+        foldsep = " ";
+        foldclose = "▸";
+        vert = "║";
+        horiz = "═";
+      };
       foldlevel = 99;
       foldlevelstart = 99;
       foldenable = true;
@@ -100,4 +102,3 @@
     };
   };
 }
-
