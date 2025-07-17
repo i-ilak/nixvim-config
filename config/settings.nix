@@ -63,6 +63,8 @@
         foldopen = "▾";
         foldsep = " ";
         foldclose = "▸";
+        vert = "║";
+        horiz = "═";
       };
       foldlevel = 99;
       foldlevelstart = 99;
