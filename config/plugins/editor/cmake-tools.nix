@@ -30,7 +30,7 @@ _: {
     }
     {
       mode = "n";
-      key = "<F19>"; # Somehow is mapped to by pressing Shift + F7
+      key = "<F31>"; # Somehow is mapped to by pressing Ctrl + F7, <C-F7> does not work
       action = "<cmd>CMakeBuildCurrentFile<CR>";
       options = {
         silent = true;
