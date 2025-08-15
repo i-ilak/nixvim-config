@@ -30,7 +30,7 @@ _: {
     }
     {
       mode = "n";
-      key = "<C-F7>";
+      key = "<S-F7>";
       action = "<cmd>CMakeBuildCurrentFile<CR>";
       options = {
         silent = true;
