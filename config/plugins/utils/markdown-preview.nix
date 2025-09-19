@@ -1,7 +1,7 @@
 _: {
   plugins = {
     markdown-preview = {
-      enable = true;
+      enable = false;
       settings = {
         browser = "firefox";
         echo_preview_url = 1;
