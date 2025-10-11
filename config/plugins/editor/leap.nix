@@ -1,6 +1,6 @@
 _: {
   plugins.leap = {
     enable = true;
-    highlightUnlabeledPhaseOneTargets = true;
+    settings.highlight_unlabeled_phase_one_targets = true;
   };
 }

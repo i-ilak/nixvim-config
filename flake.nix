@@ -2,9 +2,7 @@
   description = "i-ilak's nixvim config";
 
   inputs = {
-    # Fix nixpkgs-unstable to commit from 17.07.25, since we need some changes from
-    # after 25.05, but dont want to constantly pull unstable
-    nixpkgs.url = "github:nixos/nixpkgs/e139aa6a2b5f1f42d682a1fbc60abd355d2b4771";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
@@ -47,12 +45,20 @@
           ...
         }:
         let
+          unbreakWaylandOverlay = final: prev: {
+            wayland = prev.wayland.overrideAttrs (oldAttrs: {
+              broken = false;
+            });
+          };
+
+          modifiedPkgs = pkgs.extend unbreakWaylandOverlay;
+
           nixvim' = nixvim.legacyPackages.${system};
           nvim = nixvim'.makeNixvimWithModule {
-            inherit pkgs;
+            pkgs = modifiedPkgs;
             module = ./config;
           };
-          treefmt = treefmt-nix.lib.evalModule pkgs ./format.nix;
+          treefmt = treefmt-nix.lib.evalModule modifiedPkgs ./format.nix;
         in
         {
           checks = {
@@ -71,7 +77,7 @@
           packages.default = nvim;
 
           devShells = {
-            default = with pkgs; mkShell { inherit (self'.checks.pre-commit-check) shellHook; };
+            default = with modifiedPkgs; mkShell { inherit (self'.checks.pre-commit-check) shellHook; };
           };
         };
     };

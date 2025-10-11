@@ -1,13 +1,15 @@
 {
   plugins.illuminate = {
     enable = true;
-    underCursor = false;
-    filetypesDenylist = [
-      "Outline"
-      "TelescopePrompt"
-      "alpha"
-      "harpoon"
-      "reason"
-    ];
+    settings = {
+      underCursor = false;
+      filetypes_denylist = [
+        "Outline"
+        "TelescopePrompt"
+        "alpha"
+        "harpoon"
+        "reason"
+      ];
+    };
   };
 }
