@@ -20,11 +20,7 @@
         "unnamed"
         "unnamedplus"
       ];
-      providers.wl-copy.enable =
-        let
-          wayland = pkgs.wayland;
-        in
-        (wayland.meta.broken or false) == false;
+      providers.wl-copy.enable = !pkgs.wayland.meta.broken;
       providers.xclip.enable = true;
     };
 
