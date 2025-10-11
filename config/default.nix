@@ -1,7 +1,7 @@
 _: {
   imports = [
     # General Configuration
-    ./settings.nix
+    # ./settings.nix
     ./keymaps.nix
     ./auto_cmds.nix
     ./file_types.nix

@@ -66,18 +66,19 @@ in
           };
         };
 
-        servers = {
-          codelldb = {
-            port = 13000;
-            executable = {
-              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-              args = [
-                "--port"
-                "13000"
-              ];
-            };
-          };
-        };
+        # FIXME: Something is wrong with the node version here...
+        # servers = {
+        #   codelldb = {
+        #     port = 13000;
+        #     executable = {
+        #       command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+        #       args = [
+        #         "--port"
+        #         "13000"
+        #       ];
+        #     };
+        #   };
+        # };
       };
 
       configurations = {
@@ -108,10 +109,11 @@ in
       };
     };
 
-    dap-lldb = {
-      enable = true;
-      settings.codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-    };
+    # FIXME: Again node version is off..
+    # dap-lldb = {
+    #   enable = true;
+    #   settings.codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+    # };
 
     dap-ui = {
       enable = true;

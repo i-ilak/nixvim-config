@@ -1,4 +1,8 @@
 {
+  pkgs,
+  ...
+}:
+{
   config = {
     diagnostic.settings.virtual_text = false;
 
@@ -16,7 +20,11 @@
         "unnamed"
         "unnamedplus"
       ];
-      providers.wl-copy.enable = true;
+      providers.wl-copy.enable =
+        let
+          wayland = pkgs.wayland;
+        in
+        (wayland.meta.broken or false) == false;
       providers.xclip.enable = true;
     };
 

@@ -45,20 +45,12 @@
           ...
         }:
         let
-          unbreakWaylandOverlay = final: prev: {
-            wayland = prev.wayland.overrideAttrs (oldAttrs: {
-              broken = false;
-            });
-          };
-
-          modifiedPkgs = pkgs.extend unbreakWaylandOverlay;
-
           nixvim' = nixvim.legacyPackages.${system};
           nvim = nixvim'.makeNixvimWithModule {
-            pkgs = modifiedPkgs;
+            inherit pkgs;
             module = ./config;
           };
-          treefmt = treefmt-nix.lib.evalModule modifiedPkgs ./format.nix;
+          treefmt = treefmt-nix.lib.evalModule pkgs ./format.nix;
         in
         {
           checks = {
@@ -77,7 +69,7 @@
           packages.default = nvim;
 
           devShells = {
-            default = with modifiedPkgs; mkShell { inherit (self'.checks.pre-commit-check) shellHook; };
+            default = with pkgs; mkShell { inherit (self'.checks.pre-commit-check) shellHook; };
           };
         };
     };
