@@ -7,7 +7,7 @@
       url = "github:hercules-ci/flake-parts";
     };
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks = {
