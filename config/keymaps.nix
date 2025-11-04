@@ -339,7 +339,7 @@
     # Save and quit
     {
       mode = [ "n" ];
-      key = "s";
+      key = "<C-s>";
       action = ":w<CR>";
       options = {
         silent = true;
@@ -410,28 +410,6 @@
       };
     }
 
-    # Leap
-    {
-      mode = [ "n" ];
-      key = "f";
-      action = "<Plug>(leap-forward)";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Leap forward";
-      };
-    }
-    {
-      mode = [ "n" ];
-      key = "F";
-      action = "<Plug>(leap-backward)";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Leap backward";
-      };
-    }
-
     # Comment
     {
       mode = [ "n" ];
@@ -457,7 +435,7 @@
     # Diagnostic
     {
       mode = [ "n" ];
-      key = "ko";
+      key = "<C-k><C-o>";
       action = ":ClangdSwitchSourceHeader<CR>";
       options = {
         silent = true;
@@ -478,7 +456,7 @@
     # Trailblazer
     {
       mode = [ "n" ];
-      key = "m";
+      key = "<leader>m";
       action.__raw = ''
         function()
             local tb = require("trailblazer")

@@ -79,19 +79,19 @@
       keymaps = {
         silent = true;
         lspBuf = {
-          gd = {
+          "<leader>gd" = {
             action = "definition";
             desc = "Goto Definition";
           };
-          gD = {
+          "<leader>gD" = {
             action = "declaration";
             desc = "Goto Declaration";
           };
-          gI = {
+          "<leader>gi" = {
             action = "implementation";
             desc = "Goto Implementation";
           };
-          gT = {
+          "<leader>gT" = {
             action = "type_definition";
             desc = "Type Definition";
           };
@@ -103,7 +103,7 @@
             action = "workspace_symbol";
             desc = "Workspace Symbol";
           };
-          "rr" = {
+          "<leader>rr" = {
             action = "rename";
             desc = "Rename";
           };
@@ -164,6 +164,6 @@
       }
     end
 
-    vim.keymap.set("n", "fu", function() my_references() end, opts) -- Find references/usage
+    vim.keymap.set("n", "<leader>gr", function() my_references() end, opts) -- Find references/usage
   '';
 }
