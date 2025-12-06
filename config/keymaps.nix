@@ -4,6 +4,42 @@
   keymaps = [
     {
       mode = "n";
+      key = "<Up>";
+      action = "<NOP>";
+      options = {
+        desc = "Disable Arrow keys for navigation";
+        remap = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<Down>";
+      action = "<NOP>";
+      options = {
+        desc = "Disable Arrow keys for navigation";
+        remap = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<Left>";
+      action = "<NOP>";
+      options = {
+        desc = "Disable Arrow keys for navigation";
+        remap = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<Right>";
+      action = "<NOP>";
+      options = {
+        desc = "Disable Arrow keys for navigation";
+        remap = true;
+      };
+    }
+    {
+      mode = "n";
       key = "<C-h>";
       action = "<C-w>h";
       options = {

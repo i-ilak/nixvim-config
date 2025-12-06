@@ -8,24 +8,24 @@
         "git_status"
         "document_symbols"
       ];
-      add_blank_line_at_top = false;
+      addBlankLineAtTop = false;
 
       filesystem = {
-        bind_to_cwd = false;
-        follow_current_file = {
+        bindToCwd = false;
+        followCurrentFile = {
           enabled = true;
         };
       };
 
-      default_component_configs = {
+      defaultComponentConfigs = {
         indent = {
-          with_expanders = true;
-          expander_collapsed = "";
-          expander_expanded = " ";
-          expander_highlight = "NeoTreeExpander";
+          withExpanders = true;
+          expanderCollapsed = "";
+          expanderExpanded = " ";
+          expanderHighlight = "NeoTreeExpander";
         };
 
-        git_status = {
+        gitStatus = {
           symbols = {
             added = " ";
             conflict = "󰩌 ";

@@ -20,7 +20,7 @@
         "unnamed"
         "unnamedplus"
       ];
-      providers.wl-copy.enable = !pkgs.wayland.meta.broken;
+      providers.wl-copy.enable = !pkgs.stdenv.isDarwin;
       providers.xclip.enable = true;
     };
 

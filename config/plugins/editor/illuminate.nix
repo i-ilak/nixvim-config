@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       underCursor = false;
-      filetypes_denylist = [
+      filetypesDenylist = [
         "Outline"
         "TelescopePrompt"
         "alpha"
