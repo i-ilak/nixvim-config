@@ -40,7 +40,6 @@
           system,
           pkgs,
           self',
-          lib,
           ...
         }:
         let
@@ -57,7 +56,7 @@
               src = ./.;
               hooks = {
                 statix.enable = true;
-                nixfmt-rfc-style.enable = true;
+                nixfmt.enable = true;
                 deadnix.enable = true;
               };
             };
