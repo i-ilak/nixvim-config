@@ -117,6 +117,29 @@ in
 
     dap-ui = {
       enable = true;
+      lazyLoad = {
+        # enable = true;
+        # settings = {
+        #   # We need to access nvim-dap in the after function.
+        #   before.__raw = ''
+        #     function()
+        #       require('dap.ext.vscode').load_launchjs(nil, {})
+        #       require('lz.n').trigger_load('nvim-dap')
+        #     end
+        #   '';
+        #   keys = [
+        #     {
+        #       __unkeyed-1 = "<leader>d";
+        #       __unkeyed-2.__raw = ''
+        #         function()
+        #           require("dap-ui").toggle({ reset = true; })
+        #         end
+        #       '';
+        #       desc = "Toggle Debugger UI";
+        #     }
+        #   ];
+        # };
+      };
       settings = {
         layouts = [
           {
@@ -199,6 +222,7 @@ in
       };
     }
     {
+      # Dont forget to change it for the lazy loading as well!
       mode = "n";
       key = "<leader>d";
       action.__raw = ''

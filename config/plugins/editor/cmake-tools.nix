@@ -1,6 +1,16 @@
 _: {
   plugins.cmake-tools = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings = {
+        cmd = [
+          "CMake"
+          "CMakeGenerate"
+          "CMakeBuild"
+        ];
+      };
+    };
     settings = {
       cmake_soft_link_compile_commands = true;
       cmake_use_preset = true;

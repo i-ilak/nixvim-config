@@ -248,7 +248,23 @@
     {
       mode = "n";
       key = "Ä";
-      action = "zR";
+      action = "<cmd>lua require('ufo').openAllFolds <CR>";
+      options = {
+        desc = "Fold/Unfold file";
+      };
+    }
+    {
+      mode = "n";
+      key = "zR";
+      action = "<cmd>lua require('ufo').openAllFolds <CR>";
+      options = {
+        desc = "Fold/Unfold file";
+      };
+    }
+    {
+      mode = "n";
+      key = "zM";
+      action = "<cmd>lua require('ufo').closeAllFolds <CR>";
       options = {
         desc = "Fold/Unfold file";
       };
@@ -263,26 +279,6 @@
         silent = true;
         noremap = true;
         desc = "Yank to the end of the line";
-      };
-    }
-    {
-      mode = [ "" ];
-      key = "ä";
-      action = "za";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Toggle fold under cursor";
-      };
-    }
-    {
-      mode = [ "" ];
-      key = "Ä";
-      action = "zR";
-      options = {
-        silent = true;
-        noremap = true;
-        desc = "Open all folds";
       };
     }
 
@@ -505,6 +501,27 @@
         silent = true;
         noremap = true;
         desc = "Create new mark";
+      };
+    }
+    # Leap
+    {
+      mode = [ "n" ];
+      key = "<leader>fl";
+      action = "<Plug>(leap-forward)";
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Leap forward";
+      };
+    }
+    {
+      mode = [ "n" ];
+      key = "<leader>Fl";
+      action = "<Plug>(leap-backward)";
+      options = {
+        silent = true;
+        noremap = true;
+        desc = "Leap backward";
       };
     }
   ];

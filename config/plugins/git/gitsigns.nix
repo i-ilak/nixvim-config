@@ -1,6 +1,12 @@
 _: {
   plugins.gitsigns = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings = {
+        event = "BufReadPost";
+      };
+    };
     settings = {
       signs = {
         add = {

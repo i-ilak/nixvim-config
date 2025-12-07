@@ -1,7 +1,7 @@
 _: {
   imports = [
     # General Configuration
-    # ./settings.nix
+    ./settings.nix
     ./keymaps.nix
     ./auto_cmds.nix
     ./file_types.nix
@@ -52,6 +52,7 @@ _: {
     # Git
     ./plugins/git/gitsigns.nix
     ./plugins/git/neogit.nix
+    ./plugins/git/lazygit.nix
 
     # Utils
     ./plugins/utils/telescope.nix

@@ -60,7 +60,6 @@
       mouse = "a";
 
       # Fold config
-      foldcolumn = "0";
       fillchars = {
         eob = " ";
         fold = " ";
@@ -71,6 +70,7 @@
         horiz = "═";
       };
       foldlevel = 99;
+      foldcolumn = "0";
       foldlevelstart = 99;
       foldenable = true;
 

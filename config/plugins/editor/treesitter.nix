@@ -2,6 +2,12 @@
 {
   plugins.treesitter = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings = {
+        event = "BufReadPost";
+      };
+    };
     settings = {
       indent.enable = true;
       highlight.enable = true;

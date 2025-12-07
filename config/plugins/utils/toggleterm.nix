@@ -1,6 +1,17 @@
 _: {
   plugins.toggleterm = {
     enable = true;
+    lazyLoad = {
+      settings = {
+        cmd = "ToggleTerm";
+        keys = [
+          "<leader>t"
+          "<leader>tf"
+          "<leader>tv"
+          "<leader>th"
+        ];
+      };
+    };
     settings = {
       size = 20;
     };
