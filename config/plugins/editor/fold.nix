@@ -1,6 +1,12 @@
 _: {
   plugins.nvim-ufo = {
     enable = true;
+    lazyLoad = {
+      enable = true;
+      settings = {
+        event = "BufReadPost";
+      };
+    };
     settings = {
       fold_virt_text_handler =
         # lua
