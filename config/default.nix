@@ -36,6 +36,7 @@ _: {
     ./plugins/editor/surround.nix
     ./plugins/editor/overseer.nix
     ./plugins/editor/fold.nix
+    ./plugins/editor/auto_session.nix
 
     # UI plugins
     ./plugins/ui/bufferline.nix
