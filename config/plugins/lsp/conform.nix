@@ -62,7 +62,6 @@
             "prettierd"
             "prettier"
           ];
-          terraform = [ "terraform_fmt" ];
           bicep = [ "bicep" ];
           bash = [
             "shellcheck"
@@ -86,6 +85,15 @@
           nixfmt = {
             command = "${lib.getExe pkgs.nixfmt}";
           };
+          rustfmt = {
+            command = "${lib.getExe pkgs.rustfmt}";
+          };
+          cmake_format = {
+            command = "${lib.getExe pkgs.cmake-format}";
+          };
+          prettier = {
+            command = "${lib.getExe pkgs.prettier}";
+          };
           jq = {
             command = "${lib.getExe pkgs.jq}";
           };
@@ -107,9 +115,6 @@
           bicep = {
             command = "${lib.getExe pkgs.bicep}";
           };
-          #yamlfmt = {
-          #  command = "${lib.getExe pkgs.yamlfmt}";
-          #};
         };
         keymaps = [
           {
