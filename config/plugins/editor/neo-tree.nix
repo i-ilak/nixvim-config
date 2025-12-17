@@ -10,10 +10,12 @@
       ];
       addBlankLineAtTop = false;
 
+      close_if_last_window = true;
       filesystem = {
         bindToCwd = false;
         followCurrentFile = {
           enabled = true;
+          leave_dirs_open = false;
         };
       };
 
@@ -49,6 +51,14 @@
       action = "<cmd>Neotree toggle<cr>";
       options = {
         desc = "Open/Close Neotree";
+      };
+    }
+    {
+      mode = [ "n" ];
+      key = "<leader>er";
+      action = "<cmd>Neotree reveal<cr>";
+      options = {
+        desc = "Reveal current file in Neotree";
       };
     }
   ];
