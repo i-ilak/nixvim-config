@@ -468,7 +468,7 @@
     {
       mode = [ "n" ];
       key = "<C-k><C-o>";
-      action = ":ClangdSwitchSourceHeader<CR>";
+      action = ":LspClangdSwitchSourceHeader<CR>";
       options = {
         silent = true;
         noremap = true;
