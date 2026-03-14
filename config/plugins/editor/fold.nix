@@ -4,7 +4,7 @@ _: {
     lazyLoad = {
       enable = true;
       settings = {
-        event = "BufReadPost";
+        event = "CursorHold";
       };
     };
     settings = {

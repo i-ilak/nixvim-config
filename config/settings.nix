@@ -4,6 +4,15 @@
 }:
 {
   config = {
+    performance.byteCompileLua = {
+      enable = true;
+      configs = true;
+      initLua = true;
+      plugins = true;
+    };
+
+    luaLoader.enable = true;
+
     diagnostic.settings.virtual_text = false;
 
     extraConfigLuaPre =
@@ -22,6 +31,17 @@
       ];
       providers.wl-copy.enable = !pkgs.stdenv.isDarwin;
       providers.xclip.enable = true;
+    };
+
+    globals = {
+      loaded_netrw = 1;
+      loaded_netrwPlugin = 1;
+      loaded_tutor_mode_plugin = 1;
+      loaded_gzip = 1;
+      loaded_zip = 1;
+      loaded_zipPlugin = 1;
+      loaded_tar = 1;
+      loaded_tarPlugin = 1;
     };
 
     opts = {

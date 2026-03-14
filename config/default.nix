@@ -14,7 +14,6 @@ _: {
 
     # Completion
     ./plugins/cmp/cmp.nix
-    ./plugins/cmp/lspkind.nix
     ./plugins/cmp/autopairs.nix
     ./plugins/cmp/schemastore.nix
 
@@ -51,16 +50,10 @@ _: {
 
     # Git
     ./plugins/git/gitsigns.nix
-    ./plugins/git/neogit.nix
     ./plugins/git/lazygit.nix
 
     # Utils
     ./plugins/utils/telescope.nix
-    ./plugins/utils/whichkey.nix
-    ./plugins/utils/extra_plugins.nix
     ./plugins/utils/mini.nix
-    ./plugins/utils/markdown-preview.nix
-    ./plugins/utils/obsidian.nix
-    ./plugins/utils/toggleterm.nix
   ];
 }

@@ -1,138 +1,98 @@
 {
-  opts.completeopt = [
-    "menu"
-    "menuone"
-    "noselect"
-  ];
   plugins = {
-    cmp-emoji.enable = true;
-    cmp = {
+    blink-cmp = {
       enable = true;
       settings = {
-        autoEnableSources = true;
-        experimental = {
-          ghost_text = false;
-        };
-        performance = {
-          debounce = 60;
-          fetchingTimeout = 200;
-          maxViewEntries = 30;
-        };
-        snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
-        formatting.fields = [
-          "kind"
-          "abbr"
-          "menu"
-        ];
-        sources = [
-          {
-            name = "nvim_lsp";
-            priority = 11;
-          }
-          {
-            name = "nvim_lsp_signature_help";
-            priority = 11;
-          }
-          {
-            name = "buffer";
-            priority = 10;
-            option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-            keywordLength = 3;
-          }
-          {
-            name = "path";
-            priority = 9;
-            keywordLength = 3;
-          }
-          {
-            name = "luasnip";
-            keywordLength = 3;
-          }
-          {
-            name = "nvim_lua";
-          }
-        ];
-
-        window = {
-          completion = {
-            border = "solid";
-          };
+        completion = {
+          ghost_text.enabled = false;
+          accept.auto_brackets.enabled = true;
+          menu.max_height = 30;
+          menu.border = "solid";
           documentation = {
-            border = "solid";
+            auto_show = true;
+            window.border = "solid";
           };
         };
 
-        mapping = {
-          "<Tab>" = "cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select })";
-          "<S-Tab>" = "cmp.mapping.select_prev_item()";
-          "<esc>" = "cmp.mapping.abort()";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })";
+        snippets.preset = "luasnip";
+
+        sources = {
+          default = [
+            "lsp"
+            "path"
+            "snippets"
+            "buffer"
+          ];
+          providers = {
+            buffer = {
+              min_keyword_length = 3;
+              score_offset = -3;
+            };
+            path = {
+              min_keyword_length = 3;
+            };
+            snippets = {
+              min_keyword_length = 3;
+              max_items = 8;
+            };
+          };
         };
 
-        preselect = "cmp.PreselectMode.None";
+        keymap = {
+          preset = "none";
+          "<Tab>" = [
+            "select_next"
+            "fallback"
+          ];
+          "<S-Tab>" = [
+            "select_prev"
+            "fallback"
+          ];
+          "<CR>" = [
+            "accept"
+            "fallback"
+          ];
+          "<C-Space>" = [
+            "show"
+          ];
+          "<Esc>" = [
+            "cancel"
+            "fallback"
+          ];
+        };
+
+        appearance = {
+          use_nvim_cmp_as_default = false;
+          nerd_font_variant = "mono";
+          kind_icons = {
+            Text = "󰊄";
+            Method = " ";
+            Function = "󰡱 ";
+            Constructor = " ";
+            Field = " ";
+            Variable = "󱀍 ";
+            Class = " ";
+            Interface = " ";
+            Module = "󰕳 ";
+            Property = " ";
+            Unit = " ";
+            Value = " ";
+            Enum = " ";
+            Keyword = " ";
+            Snippet = " ";
+            Color = " ";
+            File = "";
+            Reference = " ";
+            Folder = " ";
+            EnumMember = " ";
+            Constant = " ";
+            Struct = " ";
+            Event = " ";
+            Operator = " ";
+            TypeParameter = " ";
+          };
+        };
       };
     };
-    cmp-nvim-lsp.enable = true; # lsp
-    cmp-buffer.enable = true;
-    cmp-path.enable = true; # file system paths
-    cmp_luasnip.enable = true; # snippets
-    cmp-cmdline.enable = false; # autocomplete for cmdline
   };
-  extraConfigLua = ''
-        luasnip = require("luasnip")
-        kind_icons = {
-          Text = "󰊄",
-          Method = " ",
-          Function = "󰡱 ",
-          Constructor = " ",
-          Field = " ",
-          Variable = "󱀍 ",
-          Class = " ",
-          Interface = " ",
-          Module = "󰕳 ",
-          Property = " ",
-          Unit = " ",
-          Value = " ",
-          Enum = " ",
-          Keyword = " ",
-          Snippet = " ",
-          Color = " ",
-          File = "",
-          Reference = " ",
-          Folder = " ",
-          EnumMember = " ",
-          Constant = " ",
-          Struct = " ",
-          Event = " ",
-          Operator = " ",
-          TypeParameter = " ",
-        } 
-
-         local cmp = require'cmp'
-
-     -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-     cmp.setup.cmdline({'/', "?" }, {
-       sources = {
-         { name = 'buffer' }
-       }
-     })
-
-    -- Set configuration for specific filetype.
-     cmp.setup.filetype('gitcommit', {
-       sources = cmp.config.sources({
-         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-       }, {
-         { name = 'buffer' },
-       })
-     })
-
-     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-     cmp.setup.cmdline(':', {
-       sources = cmp.config.sources({
-         { name = 'path' }
-       }, {
-         { name = 'cmdline' }
-       }),
-     })  '';
 }

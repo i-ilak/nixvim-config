@@ -12,6 +12,9 @@
       fzf-native = {
         enable = true;
       };
+      ui-select = {
+        enable = true;
+      };
     };
     settings = {
       defaults = {
@@ -226,5 +229,6 @@
         }
       }
     }
+    require("telescope").load_extension("ui-select")
   '';
 }

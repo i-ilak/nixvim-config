@@ -21,7 +21,7 @@
         no_underline = false;
         transparent_background = true;
         integrations = {
-          cmp = true;
+          blink_cmp = true;
           notify = true;
           gitsigns = true;
           neotree = true;
@@ -40,7 +40,6 @@
           indent_blankline.enabled = true;
           mini = {
             enabled = true;
-            indentscope_color = "rosewater";
           };
           native_lsp = {
             enabled = true;
