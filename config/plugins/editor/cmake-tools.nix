@@ -8,6 +8,7 @@ _: {
           "CMake"
           "CMakeGenerate"
           "CMakeBuild"
+          "CMakeBuildCurrentFile"
         ];
       };
     };
@@ -16,6 +17,49 @@ _: {
       cmake_use_preset = true;
       cmake_generate_options = {
         "-DCMAKE_EXPORT_COMPILE_COMMANDS" = 1;
+      };
+      cmake_executor = {
+        name = "overseer";
+        default_opts = {
+          overseer = {
+            new_task_opts = {
+              strategy = {
+                __unkeyed-1 = "jobstart";
+                direction = "horizontal";
+                auto_scroll = true;
+                quit_on_exit = "success";
+              };
+            };
+            on_new_task.__raw = ''
+              function(task)
+                require("overseer").open({ enter = false, direction = "bottom" })
+              end
+            '';
+          };
+        };
+      };
+      cmake_runner = {
+        name = "overseer";
+        default_opts = {
+          overseer = {
+            new_task_opts = {
+              strategy = {
+                __unkeyed-1 = "jobstart";
+                direction = "horizontal";
+                auto_scroll = true;
+                quit_on_exit = "success";
+              };
+            };
+          };
+        };
+      };
+      cmake_notifications = {
+        runner = {
+          enabled = true;
+        };
+        executor = {
+          enabled = true;
+        };
       };
     };
   };
