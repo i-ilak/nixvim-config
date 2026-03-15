@@ -131,38 +131,11 @@
     }
     {
       mode = "n";
-      key = "<F31>"; # Somehow is mapped to by pressing Ctrl + F7, <C-F7> does not work
+      key = "<leader>B";
       action = "<cmd>CMakeBuildCurrentFile<CR>";
       options = {
         silent = true;
         desc = "CMake build current file";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>Ct";
-      action = "<cmd>CMakeSelectBuildType<CR>";
-      options = {
-        silent = true;
-        desc = "Select build type";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>Cl";
-      action = "<cmd>CMakeSelectLaunchTarget<CR>";
-      options = {
-        silent = true;
-        desc = "Select launch target";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>Cg";
-      action = "<cmd>CMakeGenerate<CR>";
-      options = {
-        silent = true;
-        desc = "CMake generate";
       };
     }
   ];

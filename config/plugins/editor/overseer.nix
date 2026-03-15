@@ -10,24 +10,5 @@ _: {
       };
     };
   };
-  keymaps = [
-    {
-      mode = "n";
-      key = "<leader>Or";
-      action = "<cmd>OverseerRun<CR>";
-      options = {
-        desc = "Overseer Run";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>Ot";
-      action = "<cmd>OverseerToggle<CR>";
-      options = {
-        desc = "Overseer Toggle";
-        silent = true;
-      };
-    }
-  ];
+  keymaps = [ ];
 }

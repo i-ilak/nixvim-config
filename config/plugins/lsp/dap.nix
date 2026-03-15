@@ -254,6 +254,8 @@ in
             return
           end
 
+          require("overseer").close()
+
           -- Load .vscode/launch.json via load_launchjs
           -- nvim-dap's expand_config_variables handles ''${workspaceFolder}
           local cwd = vim.fn.getcwd()
@@ -302,7 +304,7 @@ in
     }
     {
       mode = "n";
-      key = "<F29>"; # Ctrl+F5
+      key = "<leader>r";
       action = "<cmd>OverseerRun<CR>";
       options = {
         desc = "Run without debugger";
