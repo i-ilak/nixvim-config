@@ -13,9 +13,9 @@ let
     pathBashdb = "${lib.getExe pkgs.bashdb}";
     pathBashdbLib = "${pkgs.bashdb}/share/basdhb/lib/";
     trace = true;
-    file = ''''${file}'';
-    program = ''''${file}'';
-    cwd = ''''${workspaceFolder}'';
+    file = "\${file}";
+    program = "\${file}";
+    cwd = "\${workspaceFolder}";
     pathCat = "cat";
     pathBash = "${lib.getExe pkgs.bash}";
     pathMkfifo = "mkfifo";
@@ -45,7 +45,7 @@ in
         executables = {
           bashdb = lib.mkIf pkgs.stdenv.isLinux { command = lib.getExe pkgs.bashdb; };
 
-          cppdbg = {
+          cppdbg = lib.mkIf pkgs.stdenv.isLinux {
             command = "gdb";
             args = [
               "-i"
@@ -53,7 +53,7 @@ in
             ];
           };
 
-          gdb = {
+          gdb = lib.mkIf pkgs.stdenv.isLinux {
             command = "gdb";
             args = [
               "-i"
@@ -62,7 +62,13 @@ in
           };
 
           lldb = {
-            command = lib.getExe' pkgs.lldb "lldb-dap";
+            # On macOS, use Apple's lldb-dap which knows where debugserver is.
+            # On Linux, use the nix-provided lldb_19.
+            command =
+              if pkgs.stdenv.isDarwin then
+                "/Library/Developer/CommandLineTools/usr/bin/lldb-dap"
+              else
+                lib.getExe' pkgs.lldb_19 "lldb-dap";
           };
         };
 
@@ -240,11 +246,66 @@ in
       key = "<F5>";
       action.__raw = ''
         function()
-          require("dap").continue()
+          local dap = require("dap")
+
+          -- If already in a debug session, just continue
+          if dap.session() then
+            dap.continue()
+            return
+          end
+
+          -- Load .vscode/launch.json via load_launchjs
+          -- nvim-dap's expand_config_variables handles ''${workspaceFolder}
+          local cwd = vim.fn.getcwd()
+          local launch_json_path = cwd .. "/.vscode/launch.json"
+          if vim.fn.filereadable(launch_json_path) == 1 then
+            dap.configurations.c = {}
+            dap.configurations.cpp = {}
+            dap.configurations.rust = {}
+
+            local ok, vscode = pcall(require, "dap.ext.vscode")
+            if ok then
+              vscode.load_launchjs(launch_json_path, {
+                lldb = { "c", "cpp", "rust" },
+                cppdbg = { "c", "cpp" },
+                gdb = { "c", "cpp" },
+              })
+            end
+
+            local ft = vim.bo.filetype
+            local configs = dap.configurations[ft] or {}
+
+            if #configs == 1 then
+              dap.run(configs[1])
+              return
+            elseif #configs > 1 then
+              vim.ui.select(configs, {
+                prompt = "Select debug configuration:",
+                format_item = function(c) return c.name end,
+              }, function(selected)
+                if selected then
+                  dap.run(selected)
+                end
+              end)
+              return
+            end
+          end
+
+          -- No launch.json or no matching configs: fall back to dap.continue()
+          dap.continue()
         end
       '';
       options = {
-        desc = "Continue Debugging (Start)";
+        desc = "Debug: Start / Continue";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<F29>"; # Ctrl+F5
+      action = "<cmd>OverseerRun<CR>";
+      options = {
+        desc = "Run without debugger";
         silent = true;
       };
     }
