@@ -12,6 +12,8 @@
       detailed_first = true;
       fold_blanks = 1;
       maxwidth = 80;
+      accounts_cmd = "${lib.getExe pkgs.hledger} accounts";
+      descriptions_cmd = "${lib.getExe pkgs.hledger} descriptions";
     };
   };
 
@@ -37,6 +39,7 @@
         __raw = ''
           function()
             local opts = { buffer = true, silent = true }
+            vim.keymap.set('i', '<C-l>', '<C-x><C-o>', vim.tbl_extend('force', opts, { desc = "Complete account/description" }))
             vim.keymap.set('n', '<C-t>', '<cmd>call ledger#transaction_state_toggle(line("."), " *!")<CR>', vim.tbl_extend('force', opts, { desc = "Toggle transaction state" }))
             vim.keymap.set('n', '<C-a>', '<cmd>LedgerAlign<CR>', vim.tbl_extend('force', opts, { desc = "Align amounts" }))
             vim.keymap.set('v', '<C-a>', ':LedgerAlign<CR>', vim.tbl_extend('force', opts, { desc = "Align amounts" }))
