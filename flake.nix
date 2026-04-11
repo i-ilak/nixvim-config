@@ -11,6 +11,10 @@
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-modules = {
+      url = "github:i-ilak/nix-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,11 +50,12 @@
         let
           pkgs-unstable = import inputs.nixpkgs-unstable { inherit system; };
           nixvim' = nixvim.legacyPackages.${system};
+          vimLib = inputs.nix-modules.lib.vim;
           nvim = nixvim'.makeNixvimWithModule {
             inherit pkgs;
             module = ./config;
             extraSpecialArgs = {
-              inherit pkgs-unstable;
+              inherit pkgs-unstable vimLib;
             };
           };
           treefmt = treefmt-nix.lib.evalModule pkgs ./format.nix;

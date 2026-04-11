@@ -51,12 +51,7 @@
           desc = "+buffer";
         };
       };
-      "<leader>ff" = {
-        action = "find_files";
-        options = {
-          desc = "Find project files";
-        };
-      };
+      # <leader>ff, <leader>fg, <leader>fb come from shared vim keybindings
       "<leader>fr" = {
         action = "live_grep";
         options = {
@@ -67,18 +62,6 @@
         action = "resume";
         options = {
           desc = "Resume";
-        };
-      };
-      "<leader>fg" = {
-        action = "oldfiles";
-        options = {
-          desc = "Recent";
-        };
-      };
-      "<leader>fb" = {
-        action = "buffers";
-        options = {
-          desc = "Buffers";
         };
       };
       "<C-p>" = {
@@ -204,22 +187,7 @@
         desc = "File browser";
       };
     }
-    {
-      mode = "n";
-      key = "<leader>fs";
-      action = "<cmd>Telescope lsp_document_symbols<cr>";
-      options = {
-        desc = "Symbol search for file";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>fS";
-      action = "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>";
-      options = {
-        desc = "Symbol search for workspace";
-      };
-    }
+    # <leader>fs, <leader>fS come from shared vim keybindings
   ];
   extraConfigLua = ''
     require("telescope").setup{

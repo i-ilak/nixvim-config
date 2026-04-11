@@ -44,22 +44,5 @@
     };
   };
 
-  keymaps = [
-    {
-      mode = [ "n" ];
-      key = "<leader>e";
-      action = "<cmd>Neotree toggle<cr>";
-      options = {
-        desc = "Open/Close Neotree";
-      };
-    }
-    {
-      mode = [ "n" ];
-      key = "<leader>er";
-      action = "<cmd>Neotree reveal<cr>";
-      options = {
-        desc = "Reveal current file in Neotree";
-      };
-    }
-  ];
+  # <leader>e, <leader>er come from shared vim keybindings
 }

@@ -112,20 +112,7 @@
             desc = "Rename";
           };
         };
-        diagnostic = {
-          "<leader>cd" = {
-            action = "open_float";
-            desc = "Line Diagnostics";
-          };
-          "[d" = {
-            action = "goto_next";
-            desc = "Next Diagnostic";
-          };
-          "]d" = {
-            action = "goto_prev";
-            desc = "Previous Diagnostic";
-          };
-        };
+        # [d, ]d, diagnostics come from shared vim keybindings
       };
     };
   };
