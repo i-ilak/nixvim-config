@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -20,9 +21,12 @@
         lua_ls = {
           enable = true;
         };
-        nil_ls = {
+        nixd = {
           enable = true;
-          settings.nix.flake.autoArchive = true;
+          package = pkgs-unstable.nixd;
+          settings = {
+            nixpkgs.expr = "import <nixpkgs> { }";
+          };
         };
         marksman = {
           enable = true;

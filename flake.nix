@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
@@ -43,10 +44,14 @@
           ...
         }:
         let
+          pkgs-unstable = import inputs.nixpkgs-unstable { inherit system; };
           nixvim' = nixvim.legacyPackages.${system};
           nvim = nixvim'.makeNixvimWithModule {
             inherit pkgs;
             module = ./config;
+            extraSpecialArgs = {
+              inherit pkgs-unstable;
+            };
           };
           treefmt = treefmt-nix.lib.evalModule pkgs ./format.nix;
         in
