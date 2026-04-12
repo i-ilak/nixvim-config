@@ -39,7 +39,19 @@
         __raw = ''
           function()
             local opts = { buffer = true, silent = true }
-            vim.keymap.set('i', '<C-l>', '<C-x><C-o>', vim.tbl_extend('force', opts, { desc = "Complete account/description" }))
+            vim.keymap.set('i', '<C-l>', '<C-x><C-o>', vim.tbl_extend('force', opts, { desc = "Trigger omni completion" }))
+            vim.keymap.set('i', '<Tab>', function()
+              return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
+            end, vim.tbl_extend('force', opts, { expr = true, desc = "Cycle completion forward" }))
+            vim.keymap.set('i', '<S-Tab>', function()
+              return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
+            end, vim.tbl_extend('force', opts, { expr = true, desc = "Cycle completion backward" }))
+            vim.keymap.set('i', '<CR>', function()
+              return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
+            end, vim.tbl_extend('force', opts, { expr = true, desc = "Confirm completion or newline" }))
+            vim.keymap.set('i', '<Esc>', function()
+              return vim.fn.pumvisible() == 1 and '<C-e><Esc>' or '<Esc>'
+            end, vim.tbl_extend('force', opts, { expr = true, desc = "Cancel completion or exit insert" }))
             vim.keymap.set('n', '<C-t>', '<cmd>call ledger#transaction_state_toggle(line("."), " *!")<CR>', vim.tbl_extend('force', opts, { desc = "Toggle transaction state" }))
             vim.keymap.set('n', '<C-a>', '<cmd>LedgerAlign<CR>', vim.tbl_extend('force', opts, { desc = "Align amounts" }))
             vim.keymap.set('v', '<C-a>', ':LedgerAlign<CR>', vim.tbl_extend('force', opts, { desc = "Align amounts" }))
