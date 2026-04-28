@@ -25,6 +25,7 @@
       ini
       javascript
       json
+      go
       latex
       lua
       llvm

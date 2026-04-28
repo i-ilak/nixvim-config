@@ -34,6 +34,9 @@
         pyright = {
           enable = true;
         };
+        gopls = {
+          enable = true;
+        };
         clangd = {
           enable = true;
           package = pkgs.llvmPackages_18.clang-tools;
