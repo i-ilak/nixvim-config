@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-modules = {
-      url = "github:i-ilak/nix-modules";
+      url = "git+https://tangled.org/ilak.ch/nix-modules?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pre-commit-hooks = {

@@ -149,17 +149,18 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1775914080,
-        "narHash": "sha256-/tEtPsRwONDyc/1BUnPEWvg53G1VfQsBKrPjRr27yT4=",
-        "owner": "i-ilak",
-        "repo": "nix-modules",
-        "rev": "bb96f69ba810f91534a8a7383c07a682466d360b",
-        "type": "github"
+        "lastModified": 1776360986,
+        "narHash": "sha256-mviQxowMxaz+Jc02ZR6ThXhTxQGrF4TCY+59YTxqhHY=",
+        "ref": "main",
+        "rev": "ee9560da343e9d4ae42cf989ad2421853d755f13",
+        "revCount": 21,
+        "type": "git",
+        "url": "https://tangled.org/ilak.ch/nix-modules"
       },
       "original": {
-        "owner": "i-ilak",
-        "repo": "nix-modules",
-        "type": "github"
+        "ref": "main",
+        "type": "git",
+        "url": "https://tangled.org/ilak.ch/nix-modules"
       }
     },
     "nixpkgs": {
