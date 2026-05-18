@@ -1,8 +1,5 @@
 # Neovim configuration using [`nixvim`](https://github.com/nix-community/nixvim)
 
-[![Flake Check](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-check.yml/badge.svg)](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-check.yml)
-[![Flake Build](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-build.yaml/badge.svg)](https://github.com/i-ilak/nixvim-config/actions/workflows/flake-build.yaml)
-
 Personal neovim setup
 
 - LSP support for C++, Rust, Python, and many more
@@ -18,7 +15,7 @@ Personal neovim setup
 To give it a test run, you can simply run
 
 ```bash
-nix run 'github:i-ilak/nixvim-config' -- test_file.py
+nix run 'git+https://tangled.org/ilak.ch/nixvim-config' -- test_file.py
 ```
 
 This configuration has taken inspiration from the following contributors.
