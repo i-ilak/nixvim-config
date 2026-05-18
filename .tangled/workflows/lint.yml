@@ -1,0 +1,13 @@
+when:
+  - event: ["push", "manual"]
+    branch: ["stable"]
+
+engine: "nixery"
+
+dependencies:
+  nixpkgs:
+    - statix
+
+steps:
+  - name: "statix check"
+    command: "statix check ."
